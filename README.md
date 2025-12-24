@@ -42,7 +42,6 @@ Designed as a hands-on project to explore **LLM integration**, **stateful chat U
 ## 🚀 Getting Started (Local)
 
 ## 1️⃣ Install Ollama
-```bash
 brew install ollama
 ollama run llama3
 
