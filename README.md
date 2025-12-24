@@ -41,7 +41,7 @@ Designed as a hands-on project to explore **LLM integration**, **stateful chat U
 
 ## 🚀 Getting Started (Local)
 
-### 1️⃣ Install Ollama
+## 1️⃣ Install Ollama
 ```bash
 brew install ollama
 ollama run llama3
@@ -71,8 +71,12 @@ http://localhost:8000/ui
 
 🤝 OpenAI model toggle
 
-📸 Screenshots
-/Users/sodhavidisha/Desktop/Screenshot 2025-12-24 at 14.27.38.png
+📸 Screenshot
+Chat Window & Side Bar with stored history
+
+
+<img width="754" height="356" alt="Screenshot 2025-12-24 at 14 27 38" src="https://github.com/user-attachments/assets/feb1c3d3-c4e0-46b9-bbb9-919f5a3c4e13" />
+
 
 🧑‍💻 Author
 Vidisha Sodha
