@@ -41,24 +41,31 @@ Designed as a hands-on project to explore **LLM integration**, **stateful chat U
 
 ## 🚀 Getting Started (Local)
 
-## 1️⃣ Install Ollama
+### 1️⃣ Install Ollama
 brew install ollama
+
 ollama run llama3
 
-2️⃣ Clone the repo
+
+### 2️⃣ Clone the repo
+
 git clone https://github.com/vcsodha/ai-chatbot-flask.git
 
 cd ai-chatbot-flask
-3️⃣ Run with Docker
-bash
-Copy code
+
+### 3️⃣ Run with Docker
+
+
 docker compose up --build
-4️⃣ Open in browser
-bash
-Copy code
+
+### 4️⃣ Open in browser
+
+
 http://localhost:8000/ui
 
-🔮 Roadmap (Upcoming Features)
+
+## 🔮 Roadmap (Upcoming Features)
+
 🌗 Light / Dark themes
 
 🖼️ Image upload support
@@ -71,13 +78,17 @@ http://localhost:8000/ui
 
 🤝 OpenAI model toggle
 
-📸 Screenshot: 
+
+## 📸 Screenshot: 
+
 
 Chat Window & Side Bar with stored history
 
 <img width="754" height="356" alt="Screenshot 2025-12-24 at 14 27 38" src="https://github.com/user-attachments/assets/feb1c3d3-c4e0-46b9-bbb9-919f5a3c4e13" />
 
 
-🧑‍💻 Author
+## 🧑‍💻 Author
+
 Vidisha Sodha
+
 Built as a full-stack + AI learning project.
