@@ -47,6 +47,7 @@ ollama run llama3
 
 2️⃣ Clone the repo
 git clone https://github.com/vcsodha/ai-chatbot-flask.git
+
 cd ai-chatbot-flask
 3️⃣ Run with Docker
 bash
@@ -70,9 +71,9 @@ http://localhost:8000/ui
 
 🤝 OpenAI model toggle
 
-📸 Screenshot
-Chat Window & Side Bar with stored history
+📸 Screenshot: 
 
+Chat Window & Side Bar with stored history
 
 <img width="754" height="356" alt="Screenshot 2025-12-24 at 14 27 38" src="https://github.com/user-attachments/assets/feb1c3d3-c4e0-46b9-bbb9-919f5a3c4e13" />
 
