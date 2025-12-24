@@ -45,9 +45,8 @@ Designed as a hands-on project to explore **LLM integration**, **stateful chat U
 ```bash
 brew install ollama
 ollama run llama3
-2️⃣ Clone the repository
-bash
-Copy code
+
+2️⃣ Clone the repo
 git clone https://github.com/vcsodha/ai-chatbot-flask.git
 cd ai-chatbot-flask
 3️⃣ Run with Docker
@@ -75,8 +74,6 @@ http://localhost:8000/ui
 📸 Screenshots
 /Users/sodhavidisha/Desktop/Screenshot 2025-12-24 at 14.27.38.png
 
-/Users/sodhavidisha/Desktop/Screenshot 2025-12-24 at 14.27.51.png
-
 🧑‍💻 Author
 Vidisha Sodha
-Built as a full-stack + AI learning project with a focus on clean architecture and real-world UX patterns.
+Built as a full-stack + AI learning project.
