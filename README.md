@@ -50,7 +50,7 @@ brew install ollama
 ollama run llama3
 
 2️⃣ Clone the repo
-git clone https://github.com/your-username/ai-chatbot-flask.git
+git clone
 cd ai-chatbot-flask
 
 3️⃣ Run with Docker
@@ -58,23 +58,6 @@ docker compose up --build
 
 4️⃣ Open in browser
 http://localhost:8000/ui
-
-📂 Project Structure
-ai-chatbot-flask/
-├── app/
-│   ├── routes/
-│   ├── storage/
-│   ├── openai_client.py
-│   └── __init__.py
-├── static/
-│   ├── chat.js
-│   └── style.css
-├── templates/
-│   └── index.html
-├── docker-compose.yml
-├── Dockerfile
-├── .env
-└── README.md
 
 🔮 Roadmap (Upcoming Features)
 
@@ -92,7 +75,10 @@ ai-chatbot-flask/
 
 📸 Screenshots
 
-See screenshots below 👇
+<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/17b88358-863d-48e3-a09e-eb18c076ef8a" />
+
+<img width="157" height="235" alt="image" src="https://github.com/user-attachments/assets/a0b68a15-0959-4f0c-b63b-de12d74cdfa6" />
+
 
 🧑‍💻 Author
 
