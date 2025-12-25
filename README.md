@@ -38,6 +38,22 @@ Designed as a hands-on project to explore **LLM integration**, **stateful chat U
 - Docker
 - Docker Compose
 
+## 🎯 Why this project?
+
+
+I built this project to:
+
+- Learn how to integrate LLMs into real applications
+- Design stateful chat UX with persistent sessions
+- Explore Dockerized, production-style architecture
+- Worked with local LLMs 
+
+⚠️ **Note:** 
+
+Ollama must be running locally for AI responses.  
+
+
+If Ollama is not running, the UI will still load but responses will not generate.
 
 ## 🚀 Getting Started (Local)
 
@@ -77,6 +93,13 @@ http://localhost:8000/ui
 ☁️ Cloud deployment
 
 🤝 OpenAI model toggle
+
+## ☁️ Deployment
+
+This project is currently designed for local execution using Ollama.
+
+Cloud deployment options (with OpenAI or hosted LLMs) are planned.
+
 
 
 ## 📸 Screenshot: 
