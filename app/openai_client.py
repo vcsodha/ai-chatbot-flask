@@ -1,9 +1,6 @@
 import os
 import requests
 
-# -----------------------------
-# Configuration
-# -----------------------------
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama")
 
 OLLAMA_URL = os.getenv(
@@ -24,31 +21,35 @@ SYSTEM_PROMPT = {
 }
 
 # -----------------------------
-# Ollama (Local / Private LLM)
+# Ollama (Local only)
 # -----------------------------
-def ollama_chat(model: str, messages: list[str]) -> str:
+def ollama_chat(model: str, messages: list) -> str:
     payload = {
         "model": model,
         "messages": [SYSTEM_PROMPT] + messages,
         "stream": False
     }
 
-    try:
-        res = requests.post(OLLAMA_URL, json=payload, timeout=120)
-        res.raise_for_status()
-        data = res.json()
-        return data["message"]["content"]
-    except Exception as e:
-        return f"⚠️ Ollama error: {str(e)}"
-
+    res = requests.post(OLLAMA_URL, json=payload, timeout=120)
+    res.raise_for_status()
+    data = res.json()
+    return data["message"]["content"]
 
 # -----------------------------
-# OpenAI (Future / Optional)
+# Mock (Cloud-safe demo)
 # -----------------------------
-#
+def mock_chat(messages: list) -> str:
+    last_user = next(
+        (m["content"] for m in reversed(messages) if m["role"] == "user"),
+        ""
+    )
+    return f"(Demo response) You asked: {last_user}"
+
+# -----------------------------
+# OpenAI (Future)
+# -----------------------------
 # from openai import OpenAI
-#
-# def openai_chat(model: str, messages: list[str]) -> str:
+# def openai_chat(model: str, messages: list) -> str:
 #     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 #     response = client.chat.completions.create(
 #         model=model,
@@ -57,16 +58,14 @@ def ollama_chat(model: str, messages: list[str]) -> str:
 #     return response.choices[0].message.content
 
 
-# -----------------------------
-# Unified entry point
-# -----------------------------
 def chat_completion(client, model, messages):
-    """
-    Single interface used by the app.
-    Switches LLM backend via LLM_PROVIDER env variable.
-    """
+    if LLM_PROVIDER == "ollama":
+        return ollama_chat("llama3", messages)
+
+    if LLM_PROVIDER == "mock":
+        return mock_chat(messages)
 
     if LLM_PROVIDER == "openai":
-        return "⚠️ OpenAI provider is disabled."
+        return "⚠️ OpenAI disabled for now."
 
-    return ollama_chat("llama3", messages)
+    return "⚠️ Invalid LLM_PROVIDER"
