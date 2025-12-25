@@ -20,6 +20,22 @@ Designed as a hands-on project to explore **LLM integration**, **stateful chat U
 - 🔌 Pluggable LLM backend (Ollama now, OpenAI later)
 
 
+## 📂 Project Structure
+
+app/
+
+ |---- routes/
+ 
+ |---- storage/
+ 
+ |---- templates/
+ 
+ |---- static/
+ 
+ |---- openai_client.py
+
+
+
 ## 🛠 Tech Stack
 
 ### Frontend
