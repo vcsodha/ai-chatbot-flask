@@ -45,7 +45,6 @@ def ollama_chat(model: str, messages: list[str]) -> str:
 # -----------------------------
 # OpenAI (Future / Optional)
 # -----------------------------
-# Uncomment ONLY when you want to enable OpenAI
 #
 # from openai import OpenAI
 #
@@ -68,8 +67,6 @@ def chat_completion(client, model, messages):
     """
 
     if LLM_PROVIDER == "openai":
-        # return openai_chat(model, messages)
         return "⚠️ OpenAI provider is disabled."
 
-    # Default → Ollama
     return ollama_chat("llama3", messages)
