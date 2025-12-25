@@ -7,6 +7,11 @@ This project runs **entirely locally** using a **free LLM** (no paid APIs requir
 Designed as a hands-on project to explore **LLM integration**, **stateful chat UX**, and **production-style architecture**.
 
 
+### 🔗 Live Demo (UI):
+
+https://ai-chatbot-flask-5p5h.onrender.com/ui 
+
+
 ## ✨ Features
 
 - 🤖 AI chatbot powered by **Ollama (LLaMA 3)**
