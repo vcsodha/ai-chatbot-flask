@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AI Chatbot</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLM Chat Platform</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<h1>AI Chatbot</h1>
+<h1>LLM Chat Platform</h1>
 
 <div class="app-layout">
 
-  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-header">
       <h2>Sessions</h2>
@@ -19,14 +20,13 @@
     <ul id="session-list"></ul>
   </aside>
 
-  <!-- Chat -->
   <div class="chat-wrapper">
     <div id="chat" class="chat-container"></div>
 
-    <div class="input-area">
-      <input id="message" placeholder="Type a message..." />
-      <button id="send">Send</button>
-    </div>
+    <form class="input-area" onsubmit="return false;">
+      <input id="message" placeholder="Type a message..." autocomplete="off" />
+      <button id="send" type="button">Send</button>
+    </form>
   </div>
 
 </div>

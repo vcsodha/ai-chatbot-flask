@@ -6,16 +6,24 @@ const sendBtn = document.getElementById("send");
 const sessionList = document.getElementById("session-list");
 const newChatBtn = document.getElementById("new-chat");
 
-/* ---------- Session ---------- */
 let sessionId = localStorage.getItem("session_id");
+
 if (!sessionId) {
   sessionId = crypto.randomUUID();
   localStorage.setItem("session_id", sessionId);
 }
 
-/* ---------- Helpers ---------- */
 function clearChat() {
   chatContainer.innerHTML = "";
+}
+
+function scrollDown() {
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function setSending(isSending) {
+  input.disabled = isSending;
+  sendBtn.disabled = isSending;
 }
 
 function addMessage(role, text) {
@@ -27,17 +35,28 @@ function addMessage(role, text) {
 
   msg.appendChild(bubble);
   chatContainer.appendChild(msg);
-  chatContainer.scrollTop = chatContainer.scrollHeight;
+  scrollDown();
 }
 
-/* ---------- Typing Indicator ---------- */
 function showTyping() {
-  const div = document.createElement("div");
-  div.id = "typing";
-  div.className = "typing";
-  div.textContent = "Bot is typing...";
-  chatContainer.appendChild(div);
-  chatContainer.scrollTop = chatContainer.scrollHeight;
+  if (document.getElementById("typing")) return;
+
+  const msg = document.createElement("div");
+  msg.id = "typing";
+  msg.className = "message bot";
+
+  const bubble = document.createElement("span");
+  bubble.className = "typing";
+  bubble.innerHTML = `
+  Assistant is typing
+  <span class="dots">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </span>
+`;
+
+  msg.appendChild(bubble);
+  chatContainer.appendChild(msg);
+  scrollDown();
 }
 
 function hideTyping() {
@@ -45,69 +64,82 @@ function hideTyping() {
   if (t) t.remove();
 }
 
-/* ---------- Sidebar ---------- */
 async function loadSessions() {
-  const res = await fetch("/v1/sessions");
-  const data = await res.json();
+  try {
+    const res = await fetch("/v1/sessions");
+    if (!res.ok) return;
 
-  sessionList.innerHTML = "";
+    const data = await res.json();
+    sessionList.innerHTML = "";
 
-  data.sessions.forEach(s => {
-    const li = document.createElement("li");
-    li.className = "session-item";
-    li.dataset.id = s.id;
+    data.sessions.forEach((s) => {
+      const li = document.createElement("li");
+      li.className = "session-item";
+      li.dataset.id = s.id;
 
-    if (s.id === sessionId) li.classList.add("active");
+      if (s.id === sessionId) li.classList.add("active");
 
-    const title = document.createElement("span");
-    title.className = "session-title";
-    title.textContent = s.title || "New chat";
-    title.onclick = () => loadSession(s.id);
+      const title = document.createElement("span");
+      title.className = "session-title";
+      title.textContent = s.title || "New chat";
+      title.onclick = () => loadSession(s.id);
 
-    const del = document.createElement("button");
-    del.className = "delete-btn";
-    del.textContent = "🗑️";
-    del.onclick = async (e) => {
-      e.stopPropagation();
-      await deleteSession(s.id);
-    };
+      const del = document.createElement("button");
+      del.className = "delete-btn";
+      del.textContent = "🗑️";
+      del.onclick = async (e) => {
+        e.stopPropagation();
+        await deleteSession(s.id);
+      };
 
-    li.appendChild(title);
-    li.appendChild(del);
-    sessionList.appendChild(li);
-  });
+      li.appendChild(title);
+      li.appendChild(del);
+      sessionList.appendChild(li);
+    });
+  } catch (err) {
+    console.log("loadSessions error:", err);
+  }
 }
 
 async function loadSession(id) {
   sessionId = id;
   localStorage.setItem("session_id", id);
 
-  const res = await fetch(`/v1/sessions/${id}`);
-  if (!res.ok) return;
+  try {
+    const res = await fetch(`/v1/sessions/${id}`);
+    if (!res.ok) return;
 
-  const data = await res.json();
+    const data = await res.json();
 
-  clearChat();
-  data.messages.forEach(m => addMessage(m.role, m.content));
+    clearChat();
+    data.messages.forEach((m) => addMessage(m.role, m.content));
 
-  document.querySelectorAll(".session-item").forEach(li => {
-    li.classList.toggle("active", li.dataset.id === id);
-  });
+    document.querySelectorAll(".session-item").forEach((li) => {
+      li.classList.toggle("active", li.dataset.id === id);
+    });
+
+    scrollDown();
+  } catch (err) {
+    console.log("loadSession error:", err);
+  }
 }
 
 async function deleteSession(id) {
-  await fetch(`/v1/sessions/${id}`, { method: "DELETE" });
+  try {
+    await fetch(`/v1/sessions/${id}`, { method: "DELETE" });
 
-  if (id === sessionId) {
-    sessionId = crypto.randomUUID();
-    localStorage.setItem("session_id", sessionId);
-    clearChat();
+    if (id === sessionId) {
+      sessionId = crypto.randomUUID();
+      localStorage.setItem("session_id", sessionId);
+      clearChat();
+    }
+
+    loadSessions();
+  } catch (err) {
+    console.log("deleteSession error:", err);
   }
-
-  loadSessions();
 }
 
-/* ---------- Restore history on reload ---------- */
 async function restoreLastSession() {
   const saved = localStorage.getItem("session_id");
   if (!saved) return;
@@ -118,13 +150,13 @@ async function restoreLastSession() {
 
     const data = await res.json();
     clearChat();
-    data.messages.forEach(m => addMessage(m.role, m.content));
-  } catch {
-    console.warn("No previous session to restore");
+    data.messages.forEach((m) => addMessage(m.role, m.content));
+    scrollDown();
+  } catch (err) {
+    console.log("restoreLastSession error:", err);
   }
 }
 
-/* ---------- Bot typing animation ---------- */
 function typeBotMessage(text) {
   const msg = document.createElement("div");
   msg.className = "message bot";
@@ -134,52 +166,60 @@ function typeBotMessage(text) {
   chatContainer.appendChild(msg);
 
   let i = 0;
-  function type() {
+
+  function typeNext() {
     if (i < text.length) {
-      bubble.textContent += text.charAt(i++);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-      setTimeout(type, 20);
+      bubble.textContent += text.charAt(i);
+      i++;
+      scrollDown();
+      setTimeout(typeNext, 18);
     } else {
-      input.disabled = false;
-      sendBtn.disabled = false;
+      setSending(false);
       input.focus();
     }
   }
-  type();
+
+  typeNext();
 }
 
-/* ---------- Send message ---------- */
 async function sendMessage() {
   const text = input.value.trim();
   if (!text) return;
 
   addMessage("user", text);
   input.value = "";
-  input.disabled = true;
-  sendBtn.disabled = true;
-
+  setSending(true);
   showTyping();
 
   try {
     const res = await fetch("/v1/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionId, message: text })
+      body: JSON.stringify({ session_id: sessionId, message: text }),
     });
 
+    if (!res.ok) {
+      throw new Error("Bad response: " + res.status);
+    }
+
     const data = await res.json();
+
     hideTyping();
-    typeBotMessage(data.assistant_message);
+
+    const reply = data.assistant_message || data.reply || data.message || "";
+    typeBotMessage(reply || "No response.");
+
     loadSessions();
-  } catch {
+  } catch (err) {
+    console.log("sendMessage error:", err);
     hideTyping();
     addMessage("bot", "⚠️ Error contacting server.");
-    input.disabled = false;
-    sendBtn.disabled = false;
+    setSending(false);
+    input.focus();
   }
 }
 
-/* ---------- New chat ---------- */
+
 newChatBtn.onclick = () => {
   sessionId = crypto.randomUUID();
   localStorage.setItem("session_id", sessionId);
@@ -187,12 +227,14 @@ newChatBtn.onclick = () => {
   loadSessions();
 };
 
-/* ---------- Events ---------- */
 sendBtn.onclick = sendMessage;
-input.addEventListener("keydown", e => {
-  if (e.key === "Enter") sendMessage();
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
 });
 
-/* ---------- Init ---------- */
 loadSessions();
 restoreLastSession();
