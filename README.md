@@ -1,22 +1,18 @@
 ## 📌 AI Chatbot with Pluggable LLMs (Ollama, Mock, OpenAI-ready)
 
+A full-stack AI chatbot built with Flask, SQLite, Docker, and local LLM inference (Ollama).
 
-A full-stack AI chatbot built with Flask, SQLite, Docker, and Ollama, featuring persistent chat sessions, auto-generated titles, and a modern sidebar UI.
+It features persistent chat sessions, auto-generated titles, and a modern sidebar UI designed for real-world conversational workflows.
 
+### The application supports multiple LLM providers:
 
-#### The application supports multiple LLM providers:
+ - Ollama (LLaMA-3) → Local, free AI inference
 
+ - Mock LLM → Offline development, testing, and cloud demos
 
-Ollama (local, free LLaMA-3)
+ - OpenAI (future-ready) → Optional integration prepared but disabled by default
 
-
-Mock LLM (for offline development & testing)
-
-
-OpenAI (planned / optional)
-
-
-Designed as a hands-on project to explore LLM integration, stateful chat UX, and production-style backend architecture.
+This project explores LLM integration, stateful chat UX, and production-style backend architecture while avoiding mandatory paid API dependencies.
 
 
 ### 🔗 Live Demo (UI)
@@ -24,17 +20,23 @@ Designed as a hands-on project to explore LLM integration, stateful chat UX, and
 
 👉 https://ai-chatbot-flask-5p5h.onrender.com/ui
 
+#### Note: The demo is hosted on a free cloud tier and may take ~30 seconds to spin up on first access.
 
-### ⚠️ Important:
+### ⚠️ Demo Scope:
 
+The hosted demo primarily showcases:
 
-The deployed demo showcases UI, sessions, titles, deletion, and persistence AI responses require a running LLM provider
+- UI functionality
+- Session persistence
+- Chat history management
+- Title generation and deletion
+- Overall application workflow
 
+For actual AI responses:
 
-Ollama → local only
-
-
-Mock provider → works anywhere
+- Ollama provider → run locally
+- Mock provider → works anywhere (demo default)
+- This design keeps the project accessible without requiring paid AI services.
 
 
 ### ✨ Features
@@ -76,16 +78,16 @@ Mock provider → works anywhere
 ### 🧠 Architecture Highlights
 
 
-Clean separation of UI, storage, and LLM providers
+- Clean separation of UI, storage, and LLM providers
 
 
-Environment-controlled LLM selection (OLLAMA, MOCK, OPENAI)
+- Environment-controlled LLM selection (OLLAMA, MOCK, OPENAI)
 
 
-Designed to be extensible, testable, and production-ready
+- Designed to be extensible, testable, and production-ready
 
 
-No hard dependency on paid APIs
+- No hard dependency on paid APIs
 
 
 ### 📂 Project Structure
@@ -107,69 +109,68 @@ app/
   LLM abstraction layer
  
 
- 
 
 ### 🛠 Tech Stack
 
 #### Frontend
 
-HTML
+- HTML
 
 
-CSS
+- CSS
 
 
-Vanilla JavaScript
+- Vanilla JavaScript
 
 
 #### Backend
 
 
-Python (Flask)
+- Python (Flask)
 
 
-SQLite
+- SQLite
 
 
 #### AI / LLM
 
 
-Ollama (LLaMA 3)
+- Ollama (LLaMA 3)
 
 
-Mock LLM (development/testing)
+- Mock LLM (development/testing)
 
 
-OpenAI (future-ready)
+- OpenAI (future-ready)
 
 
 #### DevOps
 
-Docker
+- Docker
 
 
-Docker Compose
+- Docker Compose
 
 
 ### 🎯 Project Motivation
 
 
-I built this project to:
+This project was built to:
 
 
-Learn how to integrate LLMs into real applications
+- Learn how to integrate LLMs into real applications
 
 
-Design stateful chat UX with persistent sessions
+- Design stateful chat UX with persistent sessions
 
 
-Work with local LLMs instead of paid APIs
+- Work with local LLMs instead of paid APIs
 
 
-Practice clean backend architecture
+- Practice clean backend architecture
 
 
-Build something deployable and extensible
+- Build something deployable and extensible
 
 
 ### ⚙️ LLM Providers
@@ -184,34 +185,34 @@ The active LLM provider is controlled via environment variables.
 Best for:
 
 
-UI development
+- UI development
 
 
-Testing
+- Testing
 
 
-Cloud demos
+- Cloud demos
 
 
-LLM_PROVIDER=mock
+- LLM_PROVIDER=mock
 
 
 #### 🤖 Ollama (local, free)
 
 
-Requires Ollama running on your machine.
+- Requires Ollama running on your machine.
 
 
-LLM_PROVIDER=ollama
+- LLM_PROVIDER=ollama
 
 
 #### ☁️ OpenAI (planned)
 
 
-Included but intentionally disabled by default.
+- Included but intentionally disabled by default.
 
 
-LLM_PROVIDER=openai
+- LLM_PROVIDER=openai
 
 
 ### 🚀 Getting Started (Local)
@@ -264,7 +265,7 @@ http://localhost:8000/ui
 ### 📸 Screenshot
 
 
-Chat UI with persistent sessions ( when using mock LLM) 
+Chat UI with persistent sessions (using Mock LLM in demo mode) 
 
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/502e6ef5-be8d-48cf-8116-3f220cae1924" />
 
@@ -275,5 +276,6 @@ Chat UI with persistent sessions ( when using mock LLM)
 
 Vidisha Sodha
 
+Software Engineer • AI Engineer
 
-Built as a full-stack + AI learning project.
+Built as a hands-on project exploring AI integration, backend architecture, and production-ready conversational systems.
