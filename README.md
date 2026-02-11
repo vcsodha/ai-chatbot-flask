@@ -264,10 +264,15 @@ http://localhost:8000/ui
 
 ### 📸 Screenshot
 
+- Chat UI with persistent sessions (using Ollama LLM in local mode) 
 
-Chat UI with persistent sessions (using Mock LLM in demo mode) 
+<img width="500" alt="Screenshot 2026-02-11 at 16 06 45" src="https://github.com/user-attachments/assets/bba42b9f-a5f5-4821-a8d8-e8150b10ae44" />
 
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/502e6ef5-be8d-48cf-8116-3f220cae1924" />
+-----
+
+- Chat UI with persistent sessions (using Mock LLM in demo mode) 
+
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/502e6ef5-be8d-48cf-8116-3f220cae1924" />
 
 
 
