@@ -49,7 +49,7 @@ def mock_chat(messages: list) -> str:
 # OpenAI (Future)
 # -----------------------------
 # from openai import OpenAI
-# def openai_chat(model: str, messages: list) -> str:
+# def openai_chat(model: str, messages: list) -> str:npm
 #     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 #     response = client.chat.completions.create(
 #         model=model,
