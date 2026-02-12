@@ -47,11 +47,15 @@ function showTyping() {
 
   const bubble = document.createElement("span");
   bubble.className = "typing";
-  bubble.innerHTML = `
-  Assistant is typing
-  <span class="dots">
-    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-  </span>
+
+bubble.className = 'typing-status-message'; 
+bubble.innerHTML = `
+  <div class="typing-flex-container">
+    <span class="typing-text">Assistant is typing</span>
+    <div class="mini-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
 `;
 
   msg.appendChild(bubble);

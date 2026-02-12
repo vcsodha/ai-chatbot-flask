@@ -216,44 +216,52 @@ h1 {
   cursor: not-allowed;
 }
 
+.typing-status-message {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: flex-start;
+  background: transparent !important; 
+  box-shadow: none !important;
+  border: none !important;
+  padding: 4px 18px !important; 
+}
 
-.typing {
-  display: inline-flex !important;
+.typing-flex-container {
+  display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
+  gap: 8px !important;
+}
+
+.typing-text {
   font-size: 13px !important;
-  color: #333 !important;
-  font-style: normal !important;
-  font-weight: 600 !important;
+  color: #8e8e8e !important; 
+  font-weight: 500 !important;
 }
 
-.typing .dots {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  padding: 4px 10px !important;
-  border-radius: 999px !important;
-  background: rgba(0, 0, 0, 0.10) !important;
+.mini-dots {
+  display: flex !important;
+  gap: 3px !important;
 }
 
-.typing .dot {
-  display: inline-block !important;  
-  width: 5px !important;
-  height: 5px !important;
+.mini-dots span {
+  width: 4px !important;  
+  height: 4px !important;   
+  min-width: 4px !important;
+  background-color: #adb5bd !important;
   border-radius: 50% !important;
-  background: #111 !important;
-  opacity: 0.25 !important;
-  animation: typingBlink 0.9s infinite !important;
+  display: inline-block !important;
+  padding: 0 !important;    
+  margin: 0 !important;
+  animation: miniPulse 1.4s infinite ease-in-out !important;
 }
 
-.typing .dot:nth-child(2) { animation-delay: 0.15s !important; }
-.typing .dot:nth-child(3) { animation-delay: 0.30s !important; }
+.mini-dots span:nth-child(2) { animation-delay: 0.2s !important; }
+.mini-dots span:nth-child(3) { animation-delay: 0.4s !important; }
 
-@keyframes typingBlink {
-  0%, 100% { opacity: 0.25; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(-1px); }
+@keyframes miniPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
 }
-
 
 @media (max-width: 900px) {
   .app-layout {
